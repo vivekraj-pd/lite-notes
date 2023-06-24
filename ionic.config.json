@@ -1,0 +1,7 @@
+{
+  "name": "notes-lite",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
