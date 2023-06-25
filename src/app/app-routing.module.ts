@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'input',
     loadChildren: () => import('./input/input.module').then( m => m.InputPageModule)
   },
+  {
+    path: 'display',
+    loadChildren: () => import('./display/display.module').then( m => m.DisplayPageModule)
+  },
 ];
 
 @NgModule({

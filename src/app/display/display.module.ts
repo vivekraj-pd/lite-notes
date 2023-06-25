@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InputPageRoutingModule } from './input-routing.module';
+import { DisplayPageRoutingModule } from './display-routing.module';
 
-import { InputPage } from './input.page';
+import { DisplayPage } from './display.page';
 import { QuillModule } from 'ngx-quill';
-import { DisplayPageModule } from '../display/display.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InputPageRoutingModule,
-    QuillModule,
-    DisplayPageModule,
+    DisplayPageRoutingModule,
+    QuillModule
   ],
-  declarations: [InputPage]
+  declarations: [DisplayPage]
 })
-export class InputPageModule { }
+export class DisplayPageModule { }

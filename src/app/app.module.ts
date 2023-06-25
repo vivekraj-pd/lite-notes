@@ -6,15 +6,25 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot({
+      format: 'object'
+    }),
+    IonicStorageModule.forRoot(
+      {
+        name: '__notesdb',
+        version: 20230625.1,
+        // driverOrder: ['indexeddb']
+      }
+    )
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -8,10 +8,16 @@
 
 
 <ion-content [fullscreen]="true">
-  <quill-editor></quill-editor>
-  <!-- <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+
+  <div class="main-flex-container">
+
+    <div *ngFor="let eachNote of allNotes">
+      <quill-view *ngIf="allNotes" [content]="eachNote.data" (click)="showLargerView(eachNote.data)"></quill-view>
+    </div>
+  </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="openInputPage()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab> -->
+  </ion-fab>
 </ion-content>
