@@ -10,9 +10,18 @@
 <ion-content [fullscreen]="true">
 
   <div class="main-flex-container">
+    <div class="parent-flex-container">
+      <div *ngFor="let eachNote of allNotes;index as i">
+        <quill-view *ngIf="allNotes && i%2 ===0" [content]="eachNote.data"
+          (click)="showLargerView(eachNote.data)"></quill-view>
+      </div>
+    </div>
+    <div class="parent-flex-container">
 
-    <div *ngFor="let eachNote of allNotes">
-      <quill-view *ngIf="allNotes" [content]="eachNote.data" (click)="showLargerView(eachNote.data)"></quill-view>
+      <div *ngFor="let eachNote of allNotes;index as i">
+        <quill-view *ngIf="allNotes && i%2 !== 0" [content]="eachNote.data"
+          (click)="showLargerView(eachNote.data)"></quill-view>
+      </div>
     </div>
   </div>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">

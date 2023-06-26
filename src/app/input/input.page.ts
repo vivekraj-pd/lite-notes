@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { DisplayPage } from '../display/display.page';
 import { Storage } from '@ionic/storage-angular';
+import { NoteCreationService } from '../service/note-creation.service';
 
 @Component({
   selector: 'app-input',
@@ -10,8 +11,8 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./input.page.scss'],
 })
 export class InputPage implements OnInit {
-  inputText = null;
-  constructor(private router: Router, private modalCtrl: ModalController, private storage: Storage) { }
+  @Input() inputText: any = null;
+  constructor(private router: Router, private modalCtrl: ModalController, private storage: Storage, private notesService: NoteCreationService) { }
 
   ngOnInit() {
   }
@@ -28,10 +29,19 @@ export class InputPage implements OnInit {
 
   async saveNote() {
     let obj: any = {};
-    obj.data = this.inputText
-    let array = [obj, obj]
-    await this.storage.set('notesArray', array);
-    console.log(array);
+    var lastIndex = this.inputText.ops.length - 1;
+    var lastOp = this.inputText.ops[lastIndex];
+    if (typeof lastOp.insert === 'string') {
+      this.inputText.ops[lastIndex].insert = lastOp.insert.trimEnd();
+    }
+
+    console.log(this.inputText);
+    obj.data = this.inputText;
+
+    // let array = [obj, obj]
+    // await this.storage.set('notesArray', array);
+    await this.notesService.saveNoteToStorage(obj);
+    console.log(obj);
   }
 
 

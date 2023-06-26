@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { InputPage } from '../input/input.page';
+import { NoteCreationService } from '../service/note-creation.service';
 // import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-home',
@@ -11,7 +14,9 @@ export class HomePage {
 
   allNotes: any;
   constructor(private router: Router,
-    private storage: Storage
+    private modalCtrl: ModalController,
+    private storage: Storage,
+    private notesService: NoteCreationService
   ) { }
 
   async initializeDatabase() {
@@ -26,13 +31,21 @@ export class HomePage {
 
     this.initializeDatabase().then(async () => {
       // Database is now created, you can safely access it
-    this.allNotes = await this.storage.get('notesArray');
-    console.log(this.allNotes);
+      // this.allNotes = await this.;
+      this.allNotes = await this.notesService.getAllNotesFromStorage();
+      console.log(this.allNotes);
     });
   }
 
-  showLargerView(data:any){
+  async showLargerView(data: any) {
     console.log(data);
+    let modal = await this.modalCtrl.create({
+      component: InputPage,
+      componentProps: { inputText: data }
+    })
+
+    await modal.present();
+
   }
 
 

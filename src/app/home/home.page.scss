@@ -1,11 +1,27 @@
 div{
-  border:solid 1px red;
-  flex-basis: 50%;
+  flex-basis: 40%;
   height:fit-content;
   border-radius: 10px;
+  flex-grow: 1;
+  height: fit-content;
 }
 .main-flex-container{
   display: flex;
   gap :2px;
   margin:  0px 5px 0px 5px;
+  flex-wrap: wrap;
+  border:solid 1px red;
+  // flex-direction: column;
 }
+.parent-flex-container{
+  display: flex;
+  gap :2px;
+  margin:  0px 5px 0px 5px;
+  flex-wrap: wrap;
+  border:solid 1px rgb(51, 0, 255);
+  flex-direction: column;
+}
+.parent-flex-container div{
+  border:solid 1px rgb(255, 0, 230);
+}
+
