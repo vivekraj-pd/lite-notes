@@ -18,12 +18,30 @@ export class NoteCreationService {
     await this.storage.set('allNotes', allNotesArray);
   }
 
-  async saveNoteToStorage(note:any){
+  async saveNoteToStorage(note: any) {
     let allNotesArray = await this.getAllNotesFromStorage();
-    allNotesArray.push(note);
-    await this.saveAllNotesArrayToStorage(allNotesArray);
+    let createdNoteObjectArray = await this.createNoteObjectArray(note, allNotesArray);
+    // allNotesArray.push(note);
+    await this.saveAllNotesArrayToStorage(createdNoteObjectArray);
   }
 
-  // async
+  async createNoteObjectArray(note: any, notesArray: Array<any>) {
+    if (note.id) {
+
+      let index = notesArray.findIndex((data) => {
+        return data.id == note.id;
+      });
+      notesArray[index] = note;
+
+      return notesArray;
+
+    } else {
+      note.id = notesArray.length + 1;
+      notesArray.push(note);
+      return notesArray;
+    }
+
+
+  }
 
 }

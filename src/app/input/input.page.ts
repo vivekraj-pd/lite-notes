@@ -11,7 +11,8 @@ import { NoteCreationService } from '../service/note-creation.service';
   styleUrls: ['./input.page.scss'],
 })
 export class InputPage implements OnInit {
-  @Input() inputText: any = null;
+  @Input() inputText: any = {};
+  @Input() id: any;
   constructor(private router: Router, private modalCtrl: ModalController, private storage: Storage, private notesService: NoteCreationService) { }
 
   ngOnInit() {
@@ -31,12 +32,23 @@ export class InputPage implements OnInit {
     let obj: any = {};
     var lastIndex = this.inputText.ops.length - 1;
     var lastOp = this.inputText.ops[lastIndex];
-    if (typeof lastOp.insert === 'string') {
+    // var lastIndex = this.inputText.ops ? this.inputText.ops.length - 1 : this.inputText.data.ops.length - 1
+    // var lastOp = this.inputText.ops ? this.inputText.ops[lastIndex] : this.inputText.data.ops[lastIndex];
+    // if (typeof lastOp.insert === 'string' && this.inputText.ops) {
       this.inputText.ops[lastIndex].insert = lastOp.insert.trimEnd();
-    }
+    // } else if (typeof lastOp.insert === 'string' && this.inputText.data.ops) {
+    //   this.inputText.data.ops[lastIndex].insert = lastOp.insert.trimEnd();
+
+    // }
 
     console.log(this.inputText);
+    // if (this.inputText.data) {
+    obj.id = this.id;
     obj.data = this.inputText;
+    // } else {
+    //   obj.id = this.inputText.id;
+    //   obj.data = this.inputText;
+    // }
 
     // let array = [obj, obj]
     // await this.storage.set('notesArray', array);

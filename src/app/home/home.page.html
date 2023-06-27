@@ -11,19 +11,24 @@
 
   <div class="main-flex-container">
     <div class="parent-flex-container">
+
       <div *ngFor="let eachNote of allNotes;index as i">
-        <quill-view *ngIf="allNotes && i%2 ===0" [content]="eachNote.data"
-          (click)="showLargerView(eachNote.data)"></quill-view>
+        <div *ngIf="allNotes && i%2 ===0">
+          <quill-view [content]="eachNote.data" (click)="showLargerView(eachNote.data,eachNote.id)"></quill-view>
+        </div>
       </div>
     </div>
     <div class="parent-flex-container">
 
       <div *ngFor="let eachNote of allNotes;index as i">
-        <quill-view *ngIf="allNotes && i%2 !== 0" [content]="eachNote.data"
-          (click)="showLargerView(eachNote.data)"></quill-view>
+        <div *ngIf="allNotes && i%2 !== 0">
+          <quill-view [content]="eachNote.data" (click)="showLargerView(eachNote.data,eachNote.id)"></quill-view>
+        </div>
       </div>
     </div>
+
   </div>
+
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="openInputPage()">
       <ion-icon name="add"></ion-icon>

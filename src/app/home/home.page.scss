@@ -10,7 +10,7 @@ div{
   gap :2px;
   margin:  0px 5px 0px 5px;
   flex-wrap: wrap;
-  border:solid 1px red;
+  // border:solid 1px red;
   // flex-direction: column;
 }
 .parent-flex-container{
@@ -18,10 +18,10 @@ div{
   gap :2px;
   margin:  0px 5px 0px 5px;
   flex-wrap: wrap;
-  border:solid 1px rgb(51, 0, 255);
+  // border:solid 1px rgb(51, 0, 255);
   flex-direction: column;
 }
-.parent-flex-container div{
-  border:solid 1px rgb(255, 0, 230);
+.parent-flex-container div div{
+  border:solid 1px rgba(49, 47, 47, 0.172);
 }
 

@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>input</ion-title>
+    <!-- <ion-title>input</ion-title> -->
+    <ion-buttons>
+      <ion-back-button defaultHref="/previous-page"></ion-back-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="preview()">
         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
@@ -14,6 +17,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <quill-editor [(ngModel)]="inputText"></quill-editor>
+  <quill-editor [(ngModel)]="inputText.data?inputText.data:inputText"></quill-editor>
 
 </ion-content>

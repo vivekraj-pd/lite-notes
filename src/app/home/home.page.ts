@@ -37,11 +37,11 @@ export class HomePage {
     });
   }
 
-  async showLargerView(data: any) {
+  async showLargerView(data: any,iD:any) {
     console.log(data);
     let modal = await this.modalCtrl.create({
       component: InputPage,
-      componentProps: { inputText: data }
+      componentProps: { inputText: data,id: iD}
     })
 
     await modal.present();
